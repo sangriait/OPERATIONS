@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRMM - Operations & Department Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="logo">CRMM</div>
+        <nav class="main-nav">
+          <button class="nav-item active" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" data-view="marketing">Marketing</button>
+          <button class="nav-item" data-view="sales">Sales</button>
+          <button class="nav-item" data-view="accounts">Accounts</button>
+          <button class="nav-item" data-view="operations">Operations</button>
+          <button class="nav-item" data-view="hr">Human Resources</button>
+          <button class="nav-item" data-view="service">Client Service</button>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1 id="view-title">Dashboard</h1>
+            <p id="view-subtitle">
+              Overview of projects, departments, and performance.
+            </p>
+          </div>
+          <div class="topbar-right">
+            <div class="user-chip">
+              <span class="user-role">Admin</span>
+              <span class="user-name">Thanishka</span>
+            </div>
+            <button id="btn-logout" class="btn-secondary btn-logout">
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <section class="content">
+          <!-- Global dashboard -->
+          <section id="view-dashboard" class="view view-active">
+            <div class="cards-grid">
+              <div class="card kpi-card">
+                <h3>Total Projects</h3>
+                <p class="kpi-value" id="kpi-total-projects">0</p>
+              </div>
+              <div class="card kpi-card">
+                <h3>Active Tasks</h3>
+                <p class="kpi-value" id="kpi-active-tasks">0</p>
+              </div>
+              <div class="card kpi-card">
+                <h3>Assigned Resources</h3>
+                <p class="kpi-value" id="kpi-resources">0</p>
+              </div>
+              <div class="card kpi-card">
+                <h3>On‑time Completion %</h3>
+                <p class="kpi-value" id="kpi-on-time">0%</p>
+              </div>
+            </div>
+
+            <div class="two-column chart-row">
+              <div class="card">
+                <h3>Task Status Overview</h3>
+                <canvas id="chart-status"></canvas>
+              </div>
+              <div class="card">
+                <h3>Department Workload</h3>
+                <canvas id="chart-departments"></canvas>
+              </div>
+            </div>
+
+            <div class="two-column">
+              <div class="card">
+                <h3>Department Performance</h3>
+                <table class="table" id="table-departments">
+                  <thead>
+                    <tr>
+                      <th>Department</th>
+                      <th>Open Tasks</th>
+                      <th>Completed</th>
+                      <th>On‑time %</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="card">
+                <h3>Recent Activity</h3>
+                <ul class="activity-list" id="activity-log"></ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Placeholder screens for departments (will be detailed later) -->
+          <section id="view-marketing" class="view">
+            <div class="card">
+              <h2>Marketing</h2>
+              <p class="muted">
+                Sample data for current campaigns and leads. This can be
+                extended later with full marketing workflows.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>Status</th>
+                    <th>Leads</th>
+                    <th>Conversion %</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Summer Launch</td>
+                    <td>Active</td>
+                    <td>120</td>
+                    <td>12%</td>
+                  </tr>
+                  <tr>
+                    <td>Referral Program</td>
+                    <td>Paused</td>
+                    <td>80</td>
+                    <td>9%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="view-sales" class="view">
+            <div class="card">
+              <h2>Sales</h2>
+              <p class="muted">
+                Sample data for the sales pipeline. This area can be wired to
+                your CRM later.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Stage</th>
+                    <th>Deals</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Prospecting</td>
+                    <td>18</td>
+                    <td>$45,000</td>
+                  </tr>
+                  <tr>
+                    <td>Proposal</td>
+                    <td>10</td>
+                    <td>$70,000</td>
+                  </tr>
+                  <tr>
+                    <td>Won</td>
+                    <td>6</td>
+                    <td>$55,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="view-accounts" class="view">
+            <div class="card">
+              <h2>Accounts</h2>
+              <p class="muted">
+                Sample financial snapshot. Can be connected to your accounting
+                system later.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Receivables</td>
+                    <td>$32,000</td>
+                  </tr>
+                  <tr>
+                    <td>Payables</td>
+                    <td>$18,500</td>
+                  </tr>
+                  <tr>
+                    <td>Revenue (MTD)</td>
+                    <td>$74,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- OPERATIONS: main requirement -->
+          <section id="view-operations" class="view">
+            <div class="subnav">
+              <button
+                class="subnav-item subnav-active"
+                data-subview="ops-resources"
+              >
+                Add Resources
+              </button>
+              <button class="subnav-item" data-subview="ops-projects">
+                Add Project (Name & Type)
+              </button>
+              <button class="subnav-item" data-subview="ops-tasks">
+                Add Tasks to Project
+              </button>
+              <button class="subnav-item" data-subview="ops-assign">
+                Assign Tasks to Individuals
+              </button>
+              <button class="subnav-item" data-subview="ops-share">
+                Share to Email & Dashboard
+              </button>
+              <button class="subnav-item" data-subview="ops-admin-dash">
+                Admin / Project Dashboard
+              </button>
+              <button class="subnav-item" data-subview="ops-individual-dash">
+                Individual Dashboard
+              </button>
+            </div>
+
+            <!-- Operations - Add Resources -->
+            <div
+              id="ops-resources"
+              class="subview subview-active two-column"
+            >
+              <div class="card">
+                <h2>Add Resources</h2>
+                <form id="form-resource" class="form-grid">
+                  <label>
+                    Full Name
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter resource name"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Role
+                    <input
+                      type="text"
+                      name="role"
+                      placeholder="Designer, Developer, etc."
+                      required
+                    />
+                  </label>
+                  <label>
+                    Department
+                    <select name="department" required>
+                      <option value="">Select department</option>
+                      <option>Marketing</option>
+                      <option>Sales</option>
+                      <option>Accounts</option>
+                      <option>Operations</option>
+                      <option>Human Resources</option>
+                      <option>Client Service</option>
+                    </select>
+                  </label>
+                  <label>
+                    Email
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="name@example.com"
+                      required
+                    />
+                  </label>
+                  <button type="submit" class="btn-primary">
+                    Save Resource
+                  </button>
+                </form>
+              </div>
+              <div class="card">
+                <h3>Resources</h3>
+                <table class="table" id="table-resources">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th>Department</th>
+                      <th>Email</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Operations - Add Project -->
+            <div id="ops-projects" class="subview two-column">
+              <div class="card">
+                <h2>Add Project (Name & Type)</h2>
+                <form id="form-project" class="form-grid">
+                  <label>
+                    Project Name
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter project name"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Project Type
+                    <input
+                      type="text"
+                      name="type"
+                      placeholder="Internal, Client, Campaign..."
+                      required
+                    />
+                  </label>
+                  <label>
+                    Department
+                    <select name="department" required>
+                      <option value="">Select department</option>
+                      <option>Marketing</option>
+                      <option>Sales</option>
+                      <option>Accounts</option>
+                      <option>Operations</option>
+                      <option>Human Resources</option>
+                      <option>Client Service</option>
+                    </select>
+                  </label>
+                  <label>
+                    Start Date
+                    <input type="date" name="startDate" required />
+                  </label>
+                  <label>
+                    End Date
+                    <input type="date" name="endDate" required />
+                  </label>
+                  <button type="submit" class="btn-primary">
+                    Save Project
+                  </button>
+                </form>
+              </div>
+              <div class="card">
+                <h3>Projects</h3>
+                <table class="table" id="table-projects">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Department</th>
+                      <th>Duration</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Operations - Add Tasks -->
+            <div id="ops-tasks" class="subview two-column">
+              <div class="card">
+                <h2>Add Tasks to Project</h2>
+                <form id="form-task" class="form-grid">
+                  <label>
+                    Project
+                    <select name="projectId" id="select-task-project" required>
+                      <option value="">Select project</option>
+                    </select>
+                  </label>
+                  <label>
+                    Task Title
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Define task title"
+                      required
+                    />
+                  </label>
+                  <label>
+                    Description
+                    <textarea
+                      name="description"
+                      placeholder="Describe the work to be done"
+                      rows="3"
+                    ></textarea>
+                  </label>
+                  <label>
+                    Estimated Hours
+                    <input
+                      type="number"
+                      name="estimate"
+                      min="0"
+                      step="0.5"
+                      placeholder="e.g. 8"
+                    />
+                  </label>
+                  <button type="submit" class="btn-primary">
+                    Save Task
+                  </button>
+                </form>
+              </div>
+              <div class="card">
+                <h3>Tasks by Project</h3>
+                <table class="table" id="table-tasks">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Task</th>
+                      <th>Status</th>
+                      <th>Est. Hours</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Operations - Assign Tasks -->
+            <div id="ops-assign" class="subview two-column">
+              <div class="card">
+                <h2>Assign Tasks to Individuals</h2>
+                <form id="form-assignment" class="form-grid">
+                  <label>
+                    Project
+                    <select
+                      name="projectId"
+                      id="select-assign-project"
+                      required
+                    >
+                      <option value="">Select project</option>
+                    </select>
+                  </label>
+                  <label>
+                    Task
+                    <select name="taskId" id="select-assign-task" required>
+                      <option value="">Select task</option>
+                    </select>
+                  </label>
+                  <label>
+                    Resource
+                    <select
+                      name="resourceId"
+                      id="select-assign-resource"
+                      required
+                    >
+                      <option value="">Select individual</option>
+                    </select>
+                  </label>
+                  <label>
+                    Due Date
+                    <input type="date" name="dueDate" required />
+                  </label>
+                  <button type="submit" class="btn-primary">
+                    Assign Task
+                  </button>
+                </form>
+              </div>
+              <div class="card">
+                <h3>Assignments</h3>
+                <table class="table" id="table-assignments">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Task</th>
+                      <th>Individual</th>
+                      <th>Due</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Operations - Share -->
+            <div id="ops-share" class="subview two-column">
+              <div class="card">
+                <h2>Share to Designated Emails & Dashboards</h2>
+                <p class="muted">
+                  This simulates sending task details to the individual’s email
+                  and updating their dashboard. Select an assignment and click
+                  "Share". In a real system this would connect to your email
+                  server.
+                </p>
+                <form id="form-share" class="form-grid">
+                  <label>
+                    Assignment
+                    <select
+                      name="assignmentId"
+                      id="select-share-assignment"
+                      required
+                    >
+                      <option value="">Select assignment</option>
+                    </select>
+                  </label>
+                  <label>
+                    Message (optional)
+                    <textarea
+                      name="message"
+                      rows="3"
+                      placeholder="Additional notes to include in the notification"
+                    ></textarea>
+                  </label>
+                  <button type="submit" class="btn-primary">Share</button>
+                </form>
+              </div>
+              <div class="card">
+                <h3>Share History</h3>
+                <ul class="activity-list" id="share-log"></ul>
+              </div>
+            </div>
+
+            <!-- Operations - Admin / Project Dashboard -->
+            <div id="ops-admin-dash" class="subview two-column">
+              <div class="card">
+                <h2>Admin & Project Dashboard</h2>
+                <div class="cards-grid compact">
+                  <div class="kpi-card card">
+                    <h3>Projects</h3>
+                    <p class="kpi-value" id="admin-total-projects">0</p>
+                  </div>
+                  <div class="kpi-card card">
+                    <h3>Tasks</h3>
+                    <p class="kpi-value" id="admin-total-tasks">0</p>
+                  </div>
+                  <div class="kpi-card card">
+                    <h3>Completed</h3>
+                    <p class="kpi-value" id="admin-completed-tasks">0</p>
+                  </div>
+                  <div class="kpi-card card">
+                    <h3>On‑time %</h3>
+                    <p class="kpi-value" id="admin-on-time">0%</p>
+                  </div>
+                </div>
+                <h3 style="margin-top: 1.5rem">Project Breakdown</h3>
+                <table class="table" id="table-admin-projects">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Department</th>
+                      <th>Tasks</th>
+                      <th>Completed</th>
+                      <th>On‑time %</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="card">
+                <h3>Timeline (sample)</h3>
+                <p class="muted">
+                  A simple textual "chart" showing how many tasks are due by
+                  week. This can be replaced with a real charting library
+                  later.
+                </p>
+                <ul class="activity-list" id="admin-timeline"></ul>
+              </div>
+            </div>
+
+            <!-- Operations - Individual Dashboard -->
+            <div id="ops-individual-dash" class="subview two-column">
+              <div class="card">
+                <h2>Individual Dashboard</h2>
+                <form class="form-grid" id="form-individual-filter">
+                  <label>
+                    Individual
+                    <select
+                      name="resourceId"
+                      id="select-individual-resource"
+                      required
+                    >
+                      <option value="">Select individual</option>
+                    </select>
+                  </label>
+                  <button type="submit" class="btn-secondary">
+                    View Performance
+                  </button>
+                </form>
+                <div class="cards-grid compact">
+                  <div class="kpi-card card">
+                    <h3>Assigned</h3>
+                    <p
+                      class="kpi-value"
+                      id="individual-total-assigned"
+                    >
+                      0
+                    </p>
+                  </div>
+                  <div class="kpi-card card">
+                    <h3>Completed</h3>
+                    <p
+                      class="kpi-value"
+                      id="individual-total-completed"
+                    >
+                      0
+                    </p>
+                  </div>
+                  <div class="kpi-card card">
+                    <h3>On‑time %</h3>
+                    <p class="kpi-value" id="individual-on-time">0%</p>
+                  </div>
+                </div>
+                <h3 style="margin-top: 1.5rem">
+                  Project & Task Performance
+                </h3>
+                <table class="table" id="table-individual-tasks">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Task</th>
+                      <th>Due</th>
+                      <th>Status</th>
+                      <th>Mark Complete</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="card">
+                <h3>Performance Summary</h3>
+                <ul class="activity-list" id="individual-summary"></ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- HR -->
+          <section id="view-hr" class="view">
+            <div class="card">
+              <h2>Human Resources</h2>
+              <p class="muted">
+                Sample snapshot of headcount and open positions. This can be
+                evolved into full HR workflows.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Total Employees</td>
+                    <td>42</td>
+                  </tr>
+                  <tr>
+                    <td>Open Positions</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <td>Average Tenure</td>
+                    <td>2.3 years</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Client Service -->
+          <section id="view-service" class="view">
+            <div class="card">
+              <h2>Client Service</h2>
+              <p class="muted">
+                Sample ticket statistics for your client service desk.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Queue</th>
+                    <th>Open</th>
+                    <th>Resolved Today</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>General Support</td>
+                    <td>23</td>
+                    <td>14</td>
+                  </tr>
+                  <tr>
+                    <td>Billing</td>
+                    <td>8</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <td>Priority Clients</td>
+                    <td>3</td>
+                    <td>3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
+
