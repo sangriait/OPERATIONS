@@ -1,13 +1,13 @@
 :root {
-  --bg: #050816;
-  --bg-elevated: #0b1020;
-  --bg-soft: #111827;
+  --bg: #5161aa;
+  --bg-elevated: #2f427e;
+  --bg-soft: #4e5e7f;
   --card-bg: #ffffff;
-  --card-text: #0f172a;
+  --card-text: #556a9b;
   --accent: #6366f1;
   --accent-soft: rgba(99, 102, 241, 0.15);
   --accent-strong: #4f46e5;
-  --border-subtle: rgba(148, 163, 184, 0.25);
+  --border-subtle: rgba(110, 99, 191, 0.25);
   --text: #e5e7eb;
   --text-soft: #9ca3af;
   --danger: #ef4444;
@@ -29,7 +29,7 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top left, #ffffff 0, #020617 55%);
+  background: radial-gradient(circle at top left, #ffffff 0, #364ebb 55%);
   color: var(--text);
 }
 
@@ -37,13 +37,13 @@ body {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
   height: 100vh;
-  background: radial-gradient(circle at top right, #020617 0, #000 55%);
+  background: radial-gradient(circle at top right, #1e3ecc 0, #1b158e 55%);
   color: var(--text);
 }
 
 .sidebar {
   border-right: 1px solid var(--border-subtle);
-  background: linear-gradient(180deg, #020617 0, #020617 40%, #020617 100%);
+  background: linear-gradient(180deg, #223690 0, #020617 40%, #1e37a4 100%);
   padding: 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
@@ -82,16 +82,16 @@ body {
 }
 
 .nav-item:hover {
-  background: rgba(30, 64, 175, 0.35);
+  background: rgba(59, 130, 246, 0.15);
   color: #e5e7eb;
   transform: translateX(1px);
 }
 
 .nav-item.active {
-  background: radial-gradient(circle at 10% -30%, #4f46e5, #020617);
-  color: #fefce8;
-  border-color: rgba(129, 140, 248, 0.8);
-  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.45);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .main {
@@ -124,11 +124,12 @@ body {
 .topbar h1 {
   font-size: 1.6rem;
   margin: 0;
+  color: #4b5563;
 }
 
 #view-subtitle {
   margin: 0.25rem 0 0;
-  color: var(--text-soft);
+  color: #6b7280;
   font-size: 0.9rem;
 }
 
@@ -138,9 +139,9 @@ body {
   gap: 0.4rem;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  background: radial-gradient(circle at 0 0, #4f46e5, #020617);
-  border: 1px solid rgba(165, 180, 252, 0.7);
-  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.5);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: 1px solid rgba(147, 197, 253, 0.5);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
   font-size: 0.8rem;
 }
 
@@ -159,6 +160,7 @@ body {
 .content {
   padding: 1.5rem 1.75rem 1.75rem;
   overflow: auto;
+  background: #ffffff;
 }
 
 .view {
@@ -425,14 +427,14 @@ textarea {
 }
 
 .subnav-item:hover {
-  background: rgba(37, 99, 235, 0.4);
+  background: rgba(59, 130, 246, 0.2);
   color: #e5e7eb;
 }
 
 .subnav-item.subnav-active {
-  background: linear-gradient(135deg, #4f46e5, #22c55e);
-  color: #f9fafb;
-  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.5);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .subview {
@@ -494,6 +496,245 @@ textarea {
   }
 }
 
+/* Task Form - White Background Theme */
+.task-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #ffffff;
+}
+
+.task-form-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.task-form-title {
+  color: #4b5563;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.task-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.task-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.task-label-full {
+  grid-column: 1 / -1;
+}
+
+.task-input,
+.task-textarea {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  color: #1f2937;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+.task-input:focus,
+.task-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Priority dropdown styling */
+.task-input[name="priority"] {
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.task-input[name="priority"] option {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 0.5rem;
+}
+
+.task-input[name="priority"] option:checked {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.task-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.task-notify-section {
+  margin-top: 0.5rem;
+}
+
+.task-notify-options {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.task-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 400;
+}
+
+.task-checkbox-label:hover {
+  background-color: #f9fafb;
+}
+
+.task-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #3b82f6;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.task-checkbox:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.task-hint {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.task-form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Priority select dropdown - match screenshot style */
+select.task-input[name="priority"] {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+select.task-input[name="priority"]:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%233b82f6' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  border-color: #3b82f6;
+}
+
+.btn-task-primary {
+  background: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.2);
+}
+
+.btn-task-primary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.btn-task-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(59, 130, 246, 0.2);
+}
+
+.btn-task-cancel {
+  background: #ffffff;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-task-cancel:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.scroll-down-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-down-btn:hover {
+  background: #f3f4f6;
+  border-color: #3b82f6;
+  color: #3b82f6;
+  transform: translateY(2px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+}
+
+.scroll-down-btn:active {
+  transform: translateY(0);
+}
+
 @media (max-width: 768px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -525,6 +766,14 @@ textarea {
 
   .content {
     padding: 1rem 1.1rem 1.25rem;
+  }
+
+  .task-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .task-form-card {
+    padding: 1.5rem;
   }
 }
 

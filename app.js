@@ -593,7 +593,7 @@ function renderCharts() {
         datasets: [
           {
             data: statusData,
-            backgroundColor: ["#e5e7eb", "#3b82f6", "#22c55e"],
+            backgroundColor: ["#e5e7eb", "#3b82f6", "#4b3c86ff"],
           },
         ],
       },
@@ -641,10 +641,10 @@ function renderCharts() {
             data: deptOpenTasks,
             backgroundColor: [
               "#6366f1",
-              "#f97316",
-              "#22c55e",
-              "#eab308",
-              "#ec4899",
+              "#5f51b9ff",
+              "#101aa5ff",
+              "#665f72ff",
+              "#253f4eff",
               "#06b6d4",
             ],
           },
@@ -818,10 +818,39 @@ function setupForms() {
       };
       const notified = notifyUsers.map(u => notifyLabels[u] || u).join(", ");
       alert(`Task created! Notifying: ${notified}`);
+    } else {
+      alert("Task created successfully!");
     }
     
     taskForm.reset();
   });
+
+  // Scroll down button functionality
+  const scrollDownTaskBtn = document.getElementById("scroll-down-task");
+  if (scrollDownTaskBtn) {
+    scrollDownTaskBtn.addEventListener("click", () => {
+      const formCard = scrollDownTaskBtn.closest(".task-form-card");
+      if (formCard) {
+        const formActions = formCard.querySelector(".task-form-actions");
+        if (formActions) {
+          formActions.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+      }
+    });
+  }
+
+  const scrollDownProjectBtn = document.getElementById("scroll-down-project");
+  if (scrollDownProjectBtn) {
+    scrollDownProjectBtn.addEventListener("click", () => {
+      const formCard = scrollDownProjectBtn.closest(".task-form-card");
+      if (formCard) {
+        const formActions = formCard.querySelector(".task-form-actions");
+        if (formActions) {
+          formActions.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
+      }
+    });
+  }
 
   const assignmentForm = document.getElementById("form-assignment");
   assignmentForm.addEventListener("submit", (e) => {
