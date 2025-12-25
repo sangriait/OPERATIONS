@@ -1,4 +1,3 @@
-
 // Simple in-memory data model
 const state = {
   resources: [],
@@ -32,7 +31,10 @@ function formatDate(dateStr) {
   if (!dateStr) return "-";
   const d = new Date(dateStr);
   if (Number.isNaN(d.getTime())) return "-";
-  return d.toLocaleDateString();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 function calculateOnTimePercentage(items) {
@@ -53,26 +55,6 @@ function setupMainNavigation() {
   const navButtons = document.querySelectorAll(".nav-item");
   const views = document.querySelectorAll(".view");
 
-  const titles = {
-    dashboard: "Dashboard",
-    marketing: "Marketing",
-    sales: "Sales",
-    accounts: "Accounts",
-    operations: "Operations",
-    hr: "Human Resources",
-    service: "Client Service",
-  };
-
-  const subtitles = {
-    dashboard: "Overview of projects, departments, and performance.",
-    marketing: "Marketing workspace and KPIs.",
-    sales: "Sales performance and pipeline.",
-    accounts: "Accounts & finance overview.",
-    operations: "Operations — resources, projects, tasks, and dashboards.",
-    hr: "Human Resources workspace.",
-    service: "Client service & support workspace.",
-  };
-
   navButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.view;
@@ -83,10 +65,6 @@ function setupMainNavigation() {
       views.forEach((v) => v.classList.remove("view-active"));
       const viewEl = document.getElementById(`view-${target}`);
       if (viewEl) viewEl.classList.add("view-active");
-
-      document.getElementById("view-title").textContent = titles[target] || "";
-      document.getElementById("view-subtitle").textContent =
-        subtitles[target] || "";
     });
   });
 }
@@ -180,16 +158,24 @@ function renderProjects() {
     const duration = `${formatDate(p.startDate)} → ${formatDate(p.endDate)}`;
     const priorityBadge = p.priority && p.priority !== "none" 
       ? `<span class="status-pill status-pill--${p.priority}">${p.priority.toUpperCase()}</span>`
-      : "";
+      : "-";
     tr.innerHTML = `
       <td>${p.name}</td>
       <td>${p.type || "-"}</td>
       <td>${p.department}</td>
-      <td>${priorityBadge || "-"}</td>
+      <td>${priorityBadge}</td>
       <td>${duration}</td>
       <td>
-        <button class="table-button" data-view-project="${p.id}">View</button>
-        <button class="table-button table-button--danger" data-delete-project="${p.id}">Delete</button>
+        <button class="table-action-btn table-action-btn--view" data-view-project="${p.id}" title="View">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3C4.5 3 1.73 5.11 0 8c1.73 2.89 4.5 5 8 5s6.27-2.11 8-5c-1.73-2.89-4.5-5-8-5zM8 11.5c-1.93 0-3.5-1.57-3.5-3.5S6.07 4.5 8 4.5s3.5 1.57 3.5 3.5S9.93 11.5 8 11.5zM8 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="currentColor"/>
+          </svg>
+        </button>
+        <button class="table-action-btn table-action-btn--delete" data-delete-project="${p.id}" title="Delete">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M12 4v9.33c0 .74-.6 1.34-1.33 1.34H5.33C4.6 14.67 4 14.07 4 13.33V4m1.33 0h5.34M6 4V2.67C6 1.93 6.6 1.33 7.33 1.33h1.34c.73 0 1.33.6 1.33 1.34V4M2 4h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -1170,6 +1156,7 @@ function seedSampleData() {
     name: "Website Revamp 2025",
     type: "Client",
     department: "Marketing",
+    priority: "high",
     startDate: new Date().toISOString().slice(0, 10),
     endDate: new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10),
   };
@@ -1178,6 +1165,7 @@ function seedSampleData() {
     name: "CRM Rollout",
     type: "Internal",
     department: "Operations",
+    priority: "medium",
     startDate: new Date().toISOString().slice(0, 10),
     endDate: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10),
   };
@@ -1252,14 +1240,22 @@ window.addEventListener("DOMContentLoaded", () => {
   seedSampleData();
   initialRender();
 
-   const logoutBtn = document.getElementById("btn-logout");
-   if (logoutBtn) {
-     logoutBtn.addEventListener("click", () => {
-       if (confirm("Are you sure you want to logout?")) {
-         window.location.reload();
-       }
-     });
-   }
+  // Set Operations view and Projects subview as active by default
+  const operationsView = document.getElementById("view-operations");
+  const operationsBtn = document.querySelector('[data-view="operations"]');
+  if (operationsView && operationsBtn) {
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("view-active"));
+    operationsView.classList.add("view-active");
+    document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+    operationsBtn.classList.add("active");
+  }
+
+  const logoutBtn = document.getElementById("btn-logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      if (confirm("Are you sure you want to logout?")) {
+        window.location.reload();
+      }
+    });
+  }
 });
-
-

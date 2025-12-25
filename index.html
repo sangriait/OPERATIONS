@@ -10,32 +10,62 @@
   <body>
     <div class="app-shell">
       <aside class="sidebar">
-        <div class="logo">CRMM</div>
         <nav class="main-nav">
-          <button class="nav-item active" data-view="dashboard">Dashboard</button>
-          <button class="nav-item" data-view="marketing">Marketing</button>
-          <button class="nav-item" data-view="sales">Sales</button>
-          <button class="nav-item" data-view="accounts">Accounts</button>
-          <button class="nav-item" data-view="operations">Operations</button>
-          <button class="nav-item" data-view="hr">Human Resources</button>
-          <button class="nav-item" data-view="service">Client Service</button>
+          <button class="nav-item active" data-view="operations">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 3h14v14H3V3zm1 1v12h12V4H4z" fill="currentColor"/>
+              <path d="M6 6h8v1H6V6zm0 3h8v1H6V9zm0 3h5v1H6v-1z" fill="currentColor"/>
+            </svg>
+            Operations
+          </button>
+          <button class="nav-item" data-view="marketing">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 3l7 7-7 7V3zm14 0v14h-2V3h2z" fill="currentColor"/>
+            </svg>
+            Marketing
+          </button>
+          <button class="nav-item" data-view="sales">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 3l7 7-7 7V3zm14 0v14h-2V3h2z" fill="currentColor"/>
+            </svg>
+            Sales
+          </button>
+          <button class="nav-item" data-view="accounts">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2L3 7v11h14V7l-7-5zm0 2.5l5 3.5v8H5v-8l5-3.5z" fill="currentColor"/>
+            </svg>
+            Accounts
+          </button>
+          <button class="nav-item" data-view="hr">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <circle cx="7" cy="6" r="2" fill="currentColor"/>
+              <circle cx="13" cy="6" r="2" fill="currentColor"/>
+              <path d="M5 14c0-2 1.5-3 5-3s5 1 5 3v2H5v-2z" fill="currentColor"/>
+            </svg>
+            Human Resources
+          </button>
+          <button class="nav-item" data-view="service">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 4h14v2H3V4zm0 4h14v2H3V8zm0 4h10v2H3v-2z" fill="currentColor"/>
+            </svg>
+            Client Service
+          </button>
         </nav>
       </aside>
 
       <main class="main">
         <header class="topbar">
-          <div>
-            <h1 id="view-title">Dashboard</h1>
-            <p id="view-subtitle">
-              Overview of projects, departments, and performance.
-            </p>
+          <div class="topbar-left">
+            <svg class="briefcase-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z" fill="currentColor"/>
+            </svg>
+            <h1 class="dashboard-title">CRMM Dashboard</h1>
           </div>
           <div class="topbar-right">
-            <div class="user-chip">
-              <span class="user-role">Admin</span>
-              <span class="user-name">Thanishka</span>
-            </div>
-            <button id="btn-logout" class="btn-secondary btn-logout">
+            <button id="btn-logout" class="btn-logout-purple">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               Logout
             </button>
           </div>
@@ -43,7 +73,7 @@
 
         <section class="content">
           <!-- Global dashboard -->
-          <section id="view-dashboard" class="view view-active">
+          <section id="view-dashboard" class="view">
             <div class="cards-grid">
               <div class="card kpi-card">
                 <h3>Total Projects</h3>
@@ -164,31 +194,28 @@
           </section>
 
           <!-- OPERATIONS: main requirement -->
-          <section id="view-operations" class="view">
+          <section id="view-operations" class="view view-active">
             <div class="subnav">
-              <button
-                class="subnav-item subnav-active"
-                data-subview="ops-resources"
-              >
-                Add Resources
+              <button class="subnav-item" data-subview="ops-admin-dash">
+                Admin Dashboard
               </button>
-              <button class="subnav-item" data-subview="ops-projects">
-                Add Project (Name & Type)
+              <button class="subnav-item" data-subview="ops-resources">
+                Resources
+              </button>
+              <button class="subnav-item subnav-active" data-subview="ops-projects">
+                Projects
               </button>
               <button class="subnav-item" data-subview="ops-tasks">
-                Add Tasks to Project
+                Tasks
               </button>
               <button class="subnav-item" data-subview="ops-assign">
-                Assign Tasks to Individuals
-              </button>
-              <button class="subnav-item" data-subview="ops-share">
-                Share to Email & Dashboard
-              </button>
-              <button class="subnav-item" data-subview="ops-admin-dash">
-                Admin / Project Dashboard
+                Assignments
               </button>
               <button class="subnav-item" data-subview="ops-individual-dash">
                 Individual Dashboard
+              </button>
+              <button class="subnav-item" data-subview="ops-share">
+                Share
               </button>
             </div>
 
@@ -263,47 +290,34 @@
 
             <!-- Operations - Add Project -->
             <div id="ops-projects" class="subview">
-              <div class="card" style="max-width: 900px; margin: 0 auto;">
-                <h2>New Project</h2>
-                <form id="form-project" class="task-form-grid">
-                <form id="form-project" class="task-form-grid">
-                  <label class="task-label task-label-full">
-                    Project Title *
+              <div class="card project-form-card">
+                <h2 class="project-form-title">
+                  <span class="plus-icon">+</span> Create New Project
+                </h2>
+                <form id="form-project" class="project-form-grid">
+                  <label class="project-label">
+                    Project Name
                     <input
                       type="text"
                       name="name"
-                      class="task-input"
-                      placeholder="Enter project title"
+                      class="project-input"
+                      placeholder="Enter project name"
                       required
                     />
                   </label>
-                  <label class="task-label">
-                    Owner
-                    <select name="ownerId" id="select-project-owner" class="task-input">
-                      <option value="">Select owner</option>
-                    </select>
+                  <label class="project-label">
+                    Type
+                    <input
+                      type="text"
+                      name="type"
+                      class="project-input"
+                      placeholder="Client/Internal"
+                      value="Client/Internal"
+                    />
                   </label>
-                  <label class="task-label">
-                    Template
-                    <select name="template" class="task-input">
-                      <option value="">Select template</option>
-                      <option>Standard Template</option>
-                      <option>Agile Template</option>
-                      <option>Waterfall Template</option>
-                      <option>Custom Template</option>
-                    </select>
-                  </label>
-                  <label class="task-label">
-                    Start Date
-                    <input type="date" name="startDate" class="task-input" required />
-                  </label>
-                  <label class="task-label">
-                    End Date
-                    <input type="date" name="endDate" class="task-input" required />
-                  </label>
-                  <label class="task-label">
-                    Department *
-                    <select name="department" class="task-input" required>
+                  <label class="project-label">
+                    Department
+                    <select name="department" class="project-input" required>
                       <option value="">Select department</option>
                       <option>Marketing</option>
                       <option>Sales</option>
@@ -313,110 +327,74 @@
                       <option>Client Service</option>
                     </select>
                   </label>
-                  <label class="task-label">
-                    Project Type
-                    <input
-                      type="text"
-                      name="type"
-                      class="task-input"
-                      placeholder="Internal, Client, Campaign..."
-                    />
-                  </label>
-                  <label class="task-label">
+                  <label class="project-label">
                     Priority
-                    <select name="priority" class="task-input">
+                    <select name="priority" class="project-input">
                       <option value="none">None</option>
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
                       <option value="high">High</option>
                     </select>
                   </label>
-                  <label class="task-label">
-                    Business Hours
-                    <select name="businessHours" class="task-input">
-                      <option value="standard">Standard Business Hours</option>
-                      <option value="24/7">24/7</option>
-                      <option value="custom">Custom</option>
-                    </select>
+                  <label class="project-label">
+                    Start Date
+                    <div class="date-input-wrapper">
+                      <input type="date" name="startDate" class="project-input date-input" required />
+                      <svg class="calendar-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M14 3h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h1m0-1v2m8-2v2M5 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
                   </label>
-                  <label class="task-label">
-                    Task Layout
-                    <select name="taskLayout" class="task-input">
-                      <option value="standard">Standard Layout</option>
-                      <option value="kanban">Kanban Board</option>
-                      <option value="list">List View</option>
-                      <option value="timeline">Timeline View</option>
-                    </select>
+                  <label class="project-label">
+                    End Date
+                    <div class="date-input-wrapper">
+                      <input type="date" name="endDate" class="project-input date-input" required />
+                      <svg class="calendar-icon" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M14 3h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h1m0-1v2m8-2v2M5 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
                   </label>
-                  <label class="task-label">
-                    Project Group
-                    <select name="projectGroup" class="task-input">
-                      <option value="">Select group</option>
-                      <option>Q1 Projects</option>
-                      <option>Q2 Projects</option>
-                      <option>Q3 Projects</option>
-                      <option>Q4 Projects</option>
-                      <option>Ongoing</option>
-                    </select>
-                  </label>
-                  <label class="task-label">
-                    Tags
-                    <input
-                      type="text"
-                      name="tags"
-                      class="task-input"
-                      placeholder="Enter tags (comma separated)"
-                    />
-                  </label>
-                  <label class="task-label task-label-full">
+                  <label class="project-label project-label-full">
                     Description
                     <textarea
                       name="description"
-                      class="task-input task-textarea"
-                      placeholder="Type @ to mention users. Type # to mention a Task or an Issue."
+                      class="project-textarea"
+                      placeholder="Enter project description"
                       rows="4"
                     ></textarea>
                   </label>
-                  <div class="task-label task-label-full" style="margin-top: 0.5rem;">
-                    <label class="task-checkbox-label">
-                      <input type="checkbox" name="strictProject" class="task-checkbox" />
-                      <span>Make this a strict project</span>
-                    </label>
-                  </div>
-                  <div class="task-label task-label-full" style="margin-top: 0.5rem;">
-                    <details style="margin-top: 0.5rem;">
-                      <summary style="cursor: pointer; font-weight: 500; margin-bottom: 0.5rem; color: #374151;">Roll-up</summary>
-                      <label class="task-checkbox-label" style="margin-top: 0.5rem;">
-                        <input type="checkbox" name="rollup" class="task-checkbox" />
-                        <span>Enable this option to roll-up dates from Tasks/subtasks to projects and Phases. Work hours, time logs, and % completion will roll-up from subtasks to Tasks.</span>
-                      </label>
-                    </details>
-                  </div>
-                  <div class="task-form-actions">
-                    <button type="submit" class="btn-task-primary">
-                      Add Project
-                    </button>
-                    <button type="button" class="btn-task-cancel" onclick="document.getElementById('form-project').reset();">
-                      Cancel
+                  <!-- Hidden fields for other project properties -->
+                  <input type="hidden" name="ownerId" value="" />
+                  <input type="hidden" name="template" value="" />
+                  <input type="hidden" name="businessHours" value="standard" />
+                  <input type="hidden" name="taskLayout" value="standard" />
+                  <input type="hidden" name="projectGroup" value="" />
+                  <input type="hidden" name="tags" value="" />
+                  <input type="hidden" name="strictProject" value="off" />
+                  <input type="hidden" name="rollup" value="off" />
+                  <div class="project-form-actions">
+                    <button type="submit" class="btn-create-project">
+                      <span class="plus-icon-small">+</span> Create Project
                     </button>
                   </div>
                 </form>
-                <button class="scroll-down-btn" id="scroll-down-project" title="Scroll down">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </button>
               </div>
-              <div class="card">
-                <h3>Projects</h3>
-                <table class="table" id="table-projects">
+              <div class="card projects-table-card">
+                <h3 class="projects-table-title">
+                  <svg class="bar-chart-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M3 15h4v-10H3v10zm6-5h4V5H9v5zm6-8h4v13h-4V2z" fill="currentColor"/>
+                  </svg>
+                  All Projects
+                </h3>
+                <table class="projects-table" id="table-projects">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Department</th>
-                      <th>Duration</th>
-                      <th>Actions</th>
+                      <th>NAME</th>
+                      <th>TYPE</th>
+                      <th>DEPARTMENT</th>
+                      <th>PRIORITY</th>
+                      <th>DURATION</th>
+                      <th>ACTIONS</th>
                     </tr>
                   </thead>
                   <tbody></tbody>
